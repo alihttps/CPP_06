@@ -5,6 +5,17 @@ ScalarConverter::ScalarConverter()
 
 }
 
+ScalarConverter::ScalarConverter(const ScalarConverter& origin)
+{
+    *this = origin;
+}
+
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter& origin)
+{
+    (void) origin;
+    return *this;
+}
+
 char const *BadArgument::what() const throw()
 {
     return "bad argument" ;
@@ -101,8 +112,6 @@ void ScalarConverter::convert(std::string& input)
         value = static_cast<double> (input[0]);
     else 
         value = strtod(input.c_str(), NULL);
-    // if ((value < INT_MIN || value > INT_MAX) && (!isinfp && !isinfn))
-    //     throw BadArgument();
     convert_to_char(value, isnan);
     convert_to_int(value, isnan, isinfp, isinfn);
     convert_to_float(value, isnan, isinfp, isinfn);

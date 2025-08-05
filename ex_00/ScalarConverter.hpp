@@ -11,14 +11,17 @@
 class ScalarConverter
 {
     public:
+        ScalarConverter();
+        ~ScalarConverter();
+        ScalarConverter(const ScalarConverter& origin);
+        ScalarConverter& operator=(const ScalarConverter& origin);
+    public:
         static void convert(std::string& input);
     private:
-        ScalarConverter();
         static void convert_to_char(double& input, bool& isnan);
         static void convert_to_int(double& input, bool& isnan, bool& isinfp, bool& isinfn);
         static void convert_to_float(double& input, bool& isnan, bool& isinfp, bool& isinfn);
         static void convert_to_double(double& value, bool& isnan, bool& isinfp, bool& isinfn);
-        ~ScalarConverter();
 };
 
 class BadArgument : public std::exception
